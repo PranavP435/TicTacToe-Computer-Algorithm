@@ -6,7 +6,7 @@ class TTTComputer:
 
     def __init__(self, peg : "str", board: "list[str]" = [""]*9):
 
-        if len(board) is not 9:
+        if len(board) != 9:
             raise IncorrectBoard("The Board input does not have 9 elements.")
         
         if peg.upper() not in ["X", "O"]:
@@ -33,7 +33,7 @@ class TTTComputer:
             (board[0] == peg and board[4] == peg and board[8] == peg) or
             (board[2] == peg and board[4] == peg and board[6] == peg))
 
-    def move(self, board: list[str]) -> int:
+    def move(self, board: "list[str]") -> int:
         '''This algorithm outputs moves' positions in the following manner:
     1 2 3
     4 5 6
