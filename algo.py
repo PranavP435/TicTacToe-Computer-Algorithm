@@ -5,9 +5,13 @@ from random import choice
 class TTTComputer:
 
     def __init__(self, peg : "str", board: "list[str]" = [""]*9):
-        if peg.lower() not in ["x", "o"]:
-            print("Invalid peg input")
-            return
+
+        if len(board) is not 9:
+            raise IncorrectBoard("The Board input does not have 9 elements.")
+        
+        if peg.upper() not in ["X", "O"]:
+            raise IncorrectBoard("The pegs can only be X or O")
+
         self.board = board
         self.peg = peg.upper()
         self.opponent = "O" if self.peg == "X" else "X"
@@ -42,6 +46,9 @@ class TTTComputer:
         # will lead to change in board also, so list slicing is used here to make two different memory locations for both.
         possible_moves = self.__calculate_possible_moves(board)
 
+        if self.opponent not in board and any(square.isalpha() for square in board): # self.moves is not equal to zero
+            raise IncorrectBoard("The pegs can only be X or O")
+
         for peg in [self.opponent, self.peg]:
             for move in possible_moves:
                 boardcopy[move] = peg
@@ -54,3 +61,11 @@ class TTTComputer:
 
         return choice(possible_moves)
 
+class IncorrectBoard(Exception):
+    '''Raised when the board input is not in the correct form:
+        1. Length should be 9
+        2. The board cannot contain any other letter from the English alphabet, other than X and O.    
+    '''
+
+    def __init__(self,message):
+        self.message = message
