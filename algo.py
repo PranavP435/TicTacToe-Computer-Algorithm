@@ -34,10 +34,10 @@ class TTTComputer:
             (board[2] == peg and board[4] == peg and board[6] == peg))
 
     def move(self, board: list[str]) -> int:
-        '''This algorithm sees the board in the following manner:
-    0 1 2
-    3 4 5
-    6 7 8
+        '''This algorithm outputs moves' positions in the following manner:
+    1 2 3
+    4 5 6
+    7 8 9
 
     So input the board accordingly
     '''
@@ -49,17 +49,17 @@ class TTTComputer:
         if self.opponent not in board and any(square.isalpha() for square in board): # self.moves is not equal to zero
             raise IncorrectBoard("The pegs can only be X or O")
 
-        for peg in [self.opponent, self.peg]: #Check if any of the next possible moves can lead to a win for computer, or for the player
+        for peg in [self.opponent, self.peg]:
             for move in possible_moves:
                 boardcopy[move] = peg
                 if self.__isWinner(peg,boardcopy):
-                    return move # if yes, play that move, either to win or to prevent the player from winning.
+                    return move + 1
                 boardcopy = board[:]
 
         if 4 in possible_moves:
-            return 4 # The middle square 
+            return 5 # The middle square 
 
-        return choice(possible_moves)
+        return choice(possible_moves) + 1
 
 class IncorrectBoard(Exception):
     '''Raised when the board input is not in the correct form:
