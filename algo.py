@@ -42,7 +42,7 @@ class TTTComputer:
     So input the board accordingly
     '''
         boardcopy = board[:]
-        # To avoid both variables pointing to same memory location; change to boardcopy
+        # To avoid both variables pointing to same memory location; A change to boardcopy
         # will lead to change in board also, so list slicing is used here to make two different memory locations for both.
         possible_moves = self.__calculate_possible_moves(board)
 
