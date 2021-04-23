@@ -49,11 +49,11 @@ class TTTComputer:
         if self.opponent not in board and any(square.isalpha() for square in board): # self.moves is not equal to zero
             raise IncorrectBoard("The pegs can only be X or O")
 
-        for peg in [self.opponent, self.peg]:
+        for peg in [self.opponent, self.peg]: #Check if any of the next possible moves can lead to a win for computer, or for the player
             for move in possible_moves:
                 boardcopy[move] = peg
                 if self.__isWinner(peg,boardcopy):
-                    return move
+                    return move # if yes, play that move, either to win or to prevent the player from winning.
                 boardcopy = board[:]
 
         if 4 in possible_moves:
