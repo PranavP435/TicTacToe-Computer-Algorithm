@@ -1,4 +1,4 @@
 # TicTacToe-Python-Algorithm
 I created a algorithm which will play as the computer, in Tic Tac Toe
 
-Uses the Tkinter module of Python to make the GUI for tictactoe.
+It's a terminal application which prints the tictactoe board everytime you make a move.
